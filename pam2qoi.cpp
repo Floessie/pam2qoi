@@ -458,11 +458,6 @@ namespace
 int main(int argc, char** argv)
 try
 {
-	const unsigned int threads =
-		argc > 1
-			? std::stoul(argv[1])
-			: std::thread::hardware_concurrency();
-
 	std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
 
 	const Image image = readPam(std::cin);
@@ -474,6 +469,18 @@ try
 	}
 
 	std::cerr << "Read: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms" << std::endl;
+
+	const unsigned int threads =
+		[argc, argv, &image]() -> unsigned int
+		{
+			unsigned int res = std::min<std::size_t>(std::thread::hardware_concurrency(), image.getHeight());
+
+			if (argc > 1) {
+				res = std::min<unsigned int>(std::stoul(argv[1]), res);
+			}
+
+			return res;
+		}();
 
 	start = std::chrono::steady_clock::now();
 
