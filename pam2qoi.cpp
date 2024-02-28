@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Flössie <floessie.mail@gmail.com>
+ * Copyright (c) 2023-2024 Flössie <floessie.mail@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -40,7 +40,7 @@ namespace
 	class Image final
 	{
 	public:
-		struct Pixel {
+		struct alignas(std::uint32_t) Pixel {
 			using Value = std::uint8_t;
 
 			Value r = 0;

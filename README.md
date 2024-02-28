@@ -47,9 +47,9 @@ If no argument is provided `pam2qoi` will use all available threads. Sometimes t
 
 ```shell
 $ ./pam2qoi < 56Mpix.pam > 56Mpix.qoi
-Read: 244ms
-Write: 148ms
+Read: 263ms
+Write: 98ms
 $ ./pam2qoi 1 < 56Mpix.pam > 56Mpix.qoi
-Read: 235ms
-Write: 915ms
+Read: 264ms
+Write: 703ms
 ```
